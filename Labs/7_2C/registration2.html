@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+	<title>Template that uses Bootstrap and AngularJS</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,
+	initial-scale=1.0" />
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+		<style>
+		input.ng-invalid {
+			background-color:pink;
+		}
+		input.ng-valid {
+			background-color:lightgreen;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Register Here!</h1>
+				<div class="from-group">
+					<form data-ng-controller="myFormCtrl" data-ng-submit="submit()" novalidate method="post" action="http://mercury.swin.edu.au/it000000/formtest.php" name="myForm">
+						<label for="firstname" >First name*</label>
+						<input type="text" id="firstname" name="firstname" data-ng-model="user.firstname" class="form-control" is-string required/>
+						<span ng-show="myForm.firstname.$error.required && myForm.firstname.$touched">First Name is required.</span>
+						<span ng-show="myForm.firstname.$invalid && myForm.firstname.$touched">Name may not be a number.</span>
+						<br/>
+						<label for="lastname">Last name*</label>
+						<input type="text" id="lastname" name="lastname" data-ng-model="user.lastname" class="form-control" is-string required/>
+						<span ng-show="myForm.lastname.$error.required && myForm.lastname.$touched">Last Name is required.</span>
+						<span ng-show="myForm.lastname.$invalid && myForm.lastname.$touched">Name may not be a number.</span>
+						<br/>
+						<label for="username">User Name*</label>
+						<input type="text" id="username" name="username" data-ng-model="user.username" class="form-control" three-chars required/>
+						<span ng-show="myForm.username.$invalid && myForm.username.$touched">User Name Must be 3 or more characters!</span>
+						<span ng-show="myForm.username.$error.required && myForm.username.$touched">User name is required.</span>
+						<br/>
+						<label for="password">Password*</label>
+						<input type="password" id="password" name="password" data-ng-model="user.password" class="form-control" ng-pattern="/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,100}$/" password-directive required/>
+						<span ng-show="myForm.password.$invalid && myForm.password.$touched">Must contain at least 1 special character and a minimum of 8 characters!</span>
+						<span ng-show="myForm.password.$error.required && myForm.password.$touched">password is required.</span>
+						<br/>
+						<label for="password1">Re-enter Password*</label>
+						<input type="password" id="password1" name="password1" data-ng-model="user.password1" class="form-control" password-two-directive required/>
+						<span ng-show="myForm.password1.$invalid && myForm.password1.$touched">Password not the same!</span>
+						<span ng-show="myForm.password1.$error.required && myForm.password1.$touched"">password is required.</span>
+						<br/>
+						<label for="email">Email*</label>
+						<input type="email" id="email" name="email" data-ng-model="user.email" class="form-control" required/>
+						<span ng-show="myForm.email.$error.required && myForm.email.$touched">Email is required.</span>
+						<span ng-show="myForm.email.$error.email">Invalid email address.</span>
+						<br/>
+						<label for="address">Street Address</label>
+						<input type="text" id="address" name="address" data-ng-model="user.address" class="form-control" address-directive/>
+						<span ng-show="myForm.address.$invalid">Maximum 40 characters!</span>
+						<br/>
+						<label for="suburb">Suburb</label>
+						<input type="text" id="suburb" name="suburb" data-ng-model="user.suburb" class="form-control" suburb-directive/>
+						<span data-ng-show="myForm.suburb.$invalid">Maximum 20 characters!</span>
+						<br/>
+						<label for="postcode">Post Code*</label>
+						<input type="text" id="postcode" name="postcode" data-ng-model="user.postcode" class="form-control" required postcode-directive/>
+						<span ng-show="myForm.postcode.$invalid && myForm.postcode.$touched">Must be only 4 numbers!</span>
+						<span ng-show="myForm.postcode.$error.required && myForm.postcode.$touched">Postcode is required.</span>
+						<br/>
+						<label for="phone">Phone Number</label>
+						<input type="number" id="phone" name="phone" data-ng-model="user.phone" class="form-control" ng-pattern="/04[\d]{8}$/g"/>
+						<span data-ng-show="myForm.phone.$error.number">Must be a number!</span>
+						<span data-ng-show="myForm.phone.$invalid">Must start with 04 and be 10 digit long!</span>
+						<br/>
+						<button type="submit" data-ng-disabled="myForm.$invalid"  class="btn btn-outlinelight" value ="Submit">Submit</button>
+						<button type="button" ng-click = "show_me = !show_me" class="btn btn-outlinelight">Terms and Conditions</button>
+						<div ng-show = "show_me">Terms and conditions scfdgvrvrvrsfgvrgvws</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- jQuery - required for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- All Bootstrap plug-ins file -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Basic AngularJS -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/appregistration2.js"></script>
+</body>
+</html>

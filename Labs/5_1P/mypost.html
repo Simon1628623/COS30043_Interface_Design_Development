@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+	<title>Template that uses Bootstrap and AngularJS</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,
+	initial-scale=1.0" />
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body data-ng-controller="myCtrl">
+	<h1>Hello world!</h1>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					<label for="VarNum">Status:</label>
+					<input type="text" name="VarNum" id="VarNum" data-ng-init="stat = ''" data-ng-model="stat">
+					<button type="button" data-ng-click="post(stat)">Post</button>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<ul data-ng-repeat="s in statuses">
+					<li>{{s}}<button type="button" data-ng-click="delete(s)">Del</button></li>
+				</ul>				
+			</div>
+		</div>
+		
+	</div>
+	
+	<!-- jQuery - required for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- All Bootstrap plug-ins file -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Basic AngularJS -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/appmypost.js"></script>
+</body>
+</html>

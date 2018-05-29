@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="">
+<head>
+	<title>Template that uses Bootstrap and AngularJS</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,
+	initial-scale=1.0" />
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	
+	<div class="container" data-ng-init="phones = [{model:'HTC 10', os:'Android'},
+	{model:'Nokia 6', os:'Android'},
+	{model:'Samsung Galaxy 7', os:'Android'},
+	{model:'IDD VIOS Non Windows', os:'Android'},
+	{model:'iPhone 6s', os:'IOS'},
+	{model:'iPhone 6s Plus', os:'IOS'},
+	{model:'iPhone 7', os:'IOS'},
+	{model:'IDD Windows Non Android', os:'IOS'},
+	{model:'HP Elite x3', os:'Windows'},
+	{model:'Microsoft 950', os:'Windows'},
+	{model:'Microsoft 950XL', os:'Windows'},
+	{model:'IDD VIOS Non Android', os:'Windows'}]">
+		<h1>Registration App: Cloud Service</h1>
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Login Information</h2>
+				<p>
+					<label for="VarUName">Enter user name:</label>
+					<input type="text" name="VarUName" id="VarUName" data-ng-model="uName">
+				</p>
+				<p>
+					<label for="VarPass1">Enter password:</label>
+					<input type="password" name="VarPass1" id="VarPass1" data-ng-model="Pass">
+				</p>
+				<p>
+					<label for="VarPass2">Re-enter password:</label>
+					<input type="password" name="VarPass2" id="VarPass2" data-ng-model="Pass2">
+				</p>
+				<p data-ng-hide="Pass2 == Pass">
+					Password does not match
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<h2>Phone Information</h2>
+			<div class="col-lg-6">
+				<h2>Operating System</h2>
+				<form name="typeForm">
+					<input type="radio" name="VarOS" data-ng-model="searchVar.os" value="Android"> Android<br>
+					<input type="radio" name="VarOS" data-ng-model="searchVar.os" value="IOS"> IOS<br>
+					<input type="radio" name="VarOS" data-ng-model="searchVar.os" value="Windows"> Windows<br>
+				</form>
+			</div>
+			<div class="col-lg-6">
+				<h2>Model</h2>
+				<select data-ng-model="searchVar.model">
+					<option data-ng-repeat="p in phones | filter:searchVar" value="{{p.model}}">{{p.model}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Summary</h2>
+				<ul>
+					<li>Username: {{uName}}</li>
+					<li>OS: {{searchVar.os}}</li>
+					<li>Phone: {{searchVar.model}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- jQuery - required for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- All Bootstrap plug-ins file -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Basic AngularJS -->
+	<script src="js/angular.min.js"></script>
+</body>
+</html>

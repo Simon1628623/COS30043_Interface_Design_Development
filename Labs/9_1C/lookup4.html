@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+	<title>Template that uses Bootstrap and AngularJS</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,
+	initial-scale=1.0" />
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container" data-ng-controller="paginationCtrl">
+		<h1>Lookup 4 App: Pagination</h1>
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="row">
+				<div class="col-lg-6">
+					<p>
+						<label for="strCode">Code:</label><br/>
+						<input type="text" name="strCode" id="strCode" data-ng-model="searchVar.code">
+					</p>
+				</div>
+				<div class="col-lg-6">
+					<p>
+						<label for="strDesc">Description:</label><br/>
+						<input type="text" name="strDesc" id="strDesc" data-ng-model="searchVar.desc">
+					</p>		
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<p>Unit type:</p>
+			<form name="typeForm">
+				<fieldset>
+					<legend>Search</legend>
+					<label for="core">Core</label>
+					<input type="radio" id="core" name="core" data-ng-model="searchVar.type" value="Core"><br>
+					<label for="sd">Software Development</label>
+					<input type="radio" id="sd" name="sd" data-ng-model="searchVar.type" value="Software Development"><br>
+					<label for="sa">System Analysis</label>
+					<input type="radio" id="sa" name="sa" data-ng-model="searchVar.type" value="Systems Analysis"><br>
+					<label for="all">All</label>
+					<input type="radio" id="all" name="all" data-ng-model="searchVar.type" value=""><br>
+					
+				</fieldset>
+				
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 table-responsive">
+			<table class="table table-striped table-hover pagination">
+				<caption>Unit Guide</caption>
+				<tr>
+					<th id="uc" scope="col">Unit Codes</th>
+					<th id="u" scope="col">Units</th> 
+					<th id="cp" scope="col">Credit Points</th>
+					<th id="t" scope="col">Type</th>
+				</tr>
+				<tr data-ng-repeat="u in units | filter:searchVar | offset:currentPage*unitsPerPage | limitTo: unitsPerPage">
+					<td headers="uc">{{u.code}}</td>
+					<td headers="u">{{u.desc}}</td> 
+					<td headers="cp">{{u.cp | number : 2}}</td>
+					<td headers="t">{{u.type}}</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<ul class="pagination">
+							<li data-ng-class="prevPageDisabled()" data-ng-click="prevPage()">
+								<a href="#">Prev</a>
+							</li>
+							<li data-ng-repeat="n in range()" data-ng-class="{active: n == currentPage}" data-ng-click="setPage(n)">
+								<a href="#">{{n+1}}</a>
+							</li>
+							<li data-ng-class="nextPageDisabled()" data-ng-click="nextPage()">
+								<a href="#">Next</a>
+							</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	</div>
+	<!-- jQuery - required for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- All Bootstrap plug-ins file -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Basic AngularJS -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/applookup4.js"></script>
+</body>
+</html>
